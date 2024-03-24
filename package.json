@@ -3,20 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "build/esm/src/index.js",
+  "main": "build/index.js",
   "keywords": [],
   "author": "Christoph Hagenbrock <agebrock@users.noreply.github.com>",
   "license": "Apache-2.0",
   "scripts": {
-    "start": "node build/esm/src/index.js",
     "clean": "rimraf coverage build tmp",
     "build": "tsc",
-    "build:watch": "nodemon  -w esbuild.js -w tests -w src -e ts,js esbuild.js",
-    "test:build": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js --testPathPattern build/cjs",
-    "test": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js --coverage",
-    "dev": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js --watch",
+    "test:watch": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js --watch",
+    "dev": "npm run test:watch",
     "link": "pwsh -Command \"New-Item -ItemType SymbolicLink -Path node_modules -Target $Env:NODE_PACKAGES_NODE_MODULES\"",
     "unlink": "pwsh -Command \"Remove-Item -Path node_modules\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agebrock/globup.git"
   },
   "engines": {
     "node": ">= 20.9"
