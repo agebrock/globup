@@ -30,15 +30,15 @@ console.log(modules.default2()); // 'fileD'
 
 ### Finding Files
 ```typescript
-import { globUpwards, globUpwardsSync } from '@agebrock/globup';
+import { globUp, globUpSync } from '@agebrock/globup';
 
-const filesAsync = await globUpwards('fixtures/package.json', {
+const filesAsync = await globUp('fixtures/package.json', {
     cwd: __dirname,
     depth: 2,
 });
 console.log(filesAsync); // ['fixtures/package.json']
 
-const filesSync = globUpwardsSync('fixtures/package.json', {
+const filesSync = globUpSync('fixtures/package.json', {
     cwd: __dirname,
     depth: 2,
 });

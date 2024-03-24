@@ -1,7 +1,7 @@
 import {
     importUp,
-    globUpwards,
-    globUpwardsSync,
+    globUp,
+    globUpSync,
     jsonParseUp,
     jsonParseUpSync,
     packageJsonUp,
@@ -34,7 +34,7 @@ describe('Sample Test', () => {
     });
 
     it('should find one file asyncronous', async () => {
-        let files = await globUpwards('fixtures/package.json', {
+        let files = await globUp('fixtures/package.json', {
             cwd: __dirname,
             depth: 2,
         });
@@ -42,7 +42,7 @@ describe('Sample Test', () => {
     });
 
     it('should find one file syncronous', () => {
-        let files = globUpwardsSync('fixtures/package.json', {
+        let files = globUpSync('fixtures/package.json', {
             cwd: __dirname,
             depth: 2,
         });

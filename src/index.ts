@@ -13,7 +13,7 @@ interface SearchOptions {
     includeTsForJs?: boolean;
 }
 
-async function globUpwards(
+async function globUp(
     globPattern: string,
     options: SearchOptions,
 ): Promise<string[]> {
@@ -94,7 +94,7 @@ function extractPath(filePath: string): string {
     }
 }
 
-function globUpwardsSync(
+function globUpSync(
     globPattern: string,
     options: SearchOptions,
 ): string[] {
@@ -202,7 +202,7 @@ async function importUp(
         return jsonParseUp(fileName, options);
     }
     options.import = true;
-    return globUpwards(fileName, options)
+    return globUp(fileName, options)
         .then(async (matchesAsync) => {
             return await importAll(matchesAsync);
         })
@@ -216,7 +216,7 @@ async function jsonParseUp(
     options: SearchOptions = {},
 ): Promise<any> {
     options.jsonParse = true;
-    return globUpwards(fileName, options)
+    return globUp(fileName, options)
         .then(async (matchesAsync) => {
             return await map(matchesAsync, fs.readJson);
         })
@@ -229,7 +229,7 @@ function jsonParseUpSync(
     options: SearchOptions = {},
 ): any {
     options.jsonParse = true;
-    return globUpwardsSync(fileName, options).map((file) =>
+    return globUpSync(fileName, options).map((file) =>
         fs.readJsonSync(file),
     );
 }
@@ -250,22 +250,17 @@ function packageJsonUpSync(options: SearchOptions = {}): any {
     let fileName = 'package.json';
     options.maxResults = 1;
 
-    let matches = globUpwardsSync(fileName, options);
+    let matches = globUpSync(fileName, options);
     const res = matches.map((m) => fs.readJsonSync(m));
     if (options.maxResults === 1) {
         return res[0];
     }
 }
-/** example
-  importUp('foo.js').then(console.log);
-
-  console.log(packageJsonUpSync());
-*/
 
 export {
     importUp,
-    globUpwards,
-    globUpwardsSync,
+    globUp,
+    globUpSync,
     jsonParseUp,
     jsonParseUpSync,
     packageJsonUp,
