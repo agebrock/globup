@@ -49,6 +49,7 @@ describe('Sample Test', () => {
         expect(files).toHaveLength(1);
     });
 
+
     it('should parse json asyncronous', async () => {
         let files = await jsonParseUp('fixtures/*.json', {
             cwd: __dirname,

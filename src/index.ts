@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
-import minimatch from 'minimatch';
+import minimatch from 'micromatch';
+
 
 interface SearchOptions {
     cwd?: string;
@@ -36,7 +37,7 @@ async function globUpwards(
         for (const file of files) {
             const filePath = path.join(pathtoSearch, file);
             if (
-                minimatch(filePath, `**/${pattern}`, {
+                minimatch.isMatch(filePath, `**/${pattern}`, {
                     dot: true,
                     nocase: true,
                 })
@@ -117,7 +118,7 @@ function globUpwardsSync(
         for (const file of files) {
             const filePath = path.join(pathtoSearch, file);
             if (
-                minimatch(filePath, `**/${pattern}`, {
+                minimatch.isMatch(filePath, `**/${pattern}`, {
                     dot: true,
                     nocase: true,
                 })

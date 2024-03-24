@@ -12,6 +12,7 @@ npm install @agebrock/globup
 
 ## Usage
 GlobUp provides several useful methods to simplify your file and directory operations. Here's how you can use it:
+(you can find the examples in the test folder)
 
 ### Importing Modules
 ```typescript
