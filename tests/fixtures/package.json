@@ -1,0 +1,5 @@
+{
+    "name":"fixtures",
+    "fixtures":"package.json",
+    "type": "module"
+}
